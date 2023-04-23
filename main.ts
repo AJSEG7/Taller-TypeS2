@@ -18,3 +18,11 @@ function renderSeriesInTable(series: Serie[]): void {
         seriesTbody.appendChild(trElement);
   });
 }
+function renderDetail(serie: Serie, trElement: HTMLTableRowElement){
+  const detailCard = document.getElementById('series-info')!;
+  detailCard.classList.remove('d-none');
+  detailCard.querySelector('.card-title')!.textContent = serie.name;
+  detailCard.querySelector('.card-text')!.textContent = serie.description;
+  (detailCard.querySelectorAll('.card-link')[1] as HTMLAnchorElement).href = serie.url;
+  (detailCard.querySelectorAll('.card-link')[1] as HTMLAnchorElement).href = serie.image;
+}

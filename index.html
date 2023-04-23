@@ -4,7 +4,28 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script type="module" src="./scripts/data.js"></script>
         <script type="module" src="./scripts/main.js"></script>
+        <script type="module" src="./scripts/serie.js"></script>
+        <script>
+        const tbody = document.querySelector("tbody");
+        const promedio = document.querySelector("#promedio");
+
+        let totalSeasons = 0;
+        series.forEach((serie) => {
+            totalSeasons += serie.seasons;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${serie.id}</td>
+                <td>${serie.name}</td>
+                <td>${serie.channel}</td>
+                <td>${serie.seasons}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        promedio.textContent = (totalSeasons / series.length).toFixed(2);
+    </script>
         </head>
     <body>
         <div class="container-fluid">
@@ -13,6 +34,8 @@
               <h1>TV Series</h1>
             </head>
           </div>
+          <div class="row" style="margin-left: 50px;" id="tableDiv">
+            <div class="col-6">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -23,9 +46,26 @@
                   </tr>
                 </thead>
                 <tbody id="series_data"></tbody>
+                <tr>
+                  <td colspan="3">Promedio de temporadas:</td>
+                  <td id="promedio"></td>     
+              </tr>
               </table>
+              </div>
             </div>
           </div>
-        </div>
+          <div class="col-md-4">
+            <div class="card d-none" style="width: 18rem;" id="series-info">
+              <div class="card-body">
+                <a href="#" class="card-link">LinkImg</a>
+                <h5 class="card-title">Name</h5>
+                <p class="card-text">Description</p>
+                <a href="#" class="card-link" target="_blank">Link</a>
+                <button type="button" class="close" aria-label="Close" onclick="hideDetail()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </div>
       </body>
 </html>

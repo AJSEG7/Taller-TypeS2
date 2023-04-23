@@ -10,3 +10,11 @@ function renderSeriesInTable(series) {
         seriesTbody.appendChild(trElement);
     });
 }
+function renderDetail(serie, trElement) {
+    var detailCard = document.getElementById('series-detail');
+    detailCard.classList.remove('d-none');
+    detailCard.querySelector('.card-title').textContent = serie.name;
+    detailCard.querySelector('.card-text').textContent = serie.description;
+    detailCard.querySelectorAll('.card-link')[1].href = serie.url;
+    detailCard.querySelectorAll('.card-link')[1].href = serie.image;
+}
