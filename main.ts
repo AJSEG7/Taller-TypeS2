@@ -15,10 +15,11 @@ function renderSeriesInTable(series: Serie[]): void {
                                <td>${s.name}</td>
                                <td>${s.platform}</td>
                                <td>${s.seasons}</td>`;
+        trElement.getElementsByTagName('td')[1].addEventListener('click',  () => renderDetail(s));                      
         seriesTbody.appendChild(trElement);
   });
 }
-function renderDetail(serie: Serie, trElement: HTMLTableRowElement){
+function renderDetail(serie: Serie){
   const detailCard = document.getElementById('series-info')!;
   detailCard.classList.remove('d-none');
   detailCard.querySelector('.card-title')!.textContent = serie.name;
